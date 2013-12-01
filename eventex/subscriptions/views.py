@@ -2,15 +2,13 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from eventex.subscriptions.forms import SubscriptionForm
-from eventex.subscriptions.models import Subscription
 
 
 def subscribe(request):
     if request.method == 'POST':
         form = SubscriptionForm(request.POST)
         if form.is_valid():
-            obj = Subscription(**form.cleaned_data)
-            obj.save()
+            obj = form.save()
             return HttpResponseRedirect('/inscricao/%d/' % obj.pk)
         else:
             return render(request,
