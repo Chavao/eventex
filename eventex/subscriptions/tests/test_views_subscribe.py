@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
+from eventex.subscriptions.models import Subscription
 
 
 class SubscribeTest(TestCase):
@@ -54,3 +55,9 @@ class SubscribePostTest(TestCase):
         Valid POST should redirect to /inscricao/1/.
         """
         self.assertEqual(302, self.resp.status_code)
+
+    def test_save(self):
+        """
+        Valid POST must be saved.
+        """
+        self.assertTrue(Subscription.objects.exists())
