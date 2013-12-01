@@ -28,3 +28,9 @@ class SubscribeTest(TestCase):
         self.assertContains(self.resp, 'type="email"')
         self.assertContains(self.resp, 'type="submit"')
 
+    def test_csrf(self):
+        """
+        Html must contain csrf token.
+        """
+        self.assertContains(self.resp, 'csrfmiddlewaretoken')
+
