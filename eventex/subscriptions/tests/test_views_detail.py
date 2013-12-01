@@ -14,3 +14,9 @@ class DetailTest(TestCase):
         GET /inscricai/1/ should return status 200.
         """
         self.assertEqual(200, self.resp.status_code)
+
+    def test_template(self):
+        """
+        Uses template.
+        """
+        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_detail.html')
