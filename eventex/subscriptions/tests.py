@@ -34,3 +34,9 @@ class SubscribeTest(TestCase):
         """
         self.assertContains(self.resp, 'csrfmiddlewaretoken')
 
+    def test_has_form(self):
+        """
+        Context must have the subscription form.
+        """
+        form = self.resp.context['form']
+        self.assertIsInstance(form, SubscriptionForm)
