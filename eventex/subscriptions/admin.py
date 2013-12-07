@@ -19,5 +19,8 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
     actions = ['mark_as_paid']
 
+    def mark_as_paid(self, request, queryset):
+        count = queryset.update(paid=True)
+
 
 admin.site.register(Subscription, SubscriptionAdmin)
