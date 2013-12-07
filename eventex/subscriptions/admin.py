@@ -17,5 +17,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
     subscribed_today.short_description = _(r'Inscrito hoje?')
     subscribed_today.boolean = True
 
+    actions = ['mark_as_paid']
+
 
 admin.site.register(Subscription, SubscriptionAdmin)
