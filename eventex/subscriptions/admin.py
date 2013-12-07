@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.contrib import admin
 from django.utils.datetime_safe import datetime
+from django.utils.translation import ugettext as _
 from eventex.subscriptions.models import Subscription
 
 
@@ -11,6 +12,8 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
     def subscribed_today(self, obj):
         return obj.created_at.date() == datetime.today().date()
+
+    subscribed_today.short_description = _(r'Inscrito hoje?')
 
 
 admin.site.register(Subscription, SubscriptionAdmin)
