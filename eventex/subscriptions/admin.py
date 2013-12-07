@@ -14,6 +14,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         return obj.created_at.date() == datetime.today().date()
 
     subscribed_today.short_description = _(r'Inscrito hoje?')
+    subscribed_today.boolean = True
 
 
 admin.site.register(Subscription, SubscriptionAdmin)
