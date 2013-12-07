@@ -31,8 +31,8 @@ class SubscriptionForm(forms.ModelForm):
     def clean(self):
         super(SubscriptionForm, self).clean()
 
-        if not self.cleaned_data['email'] and \
-           not self.cleaned_data['phone']:
+        if not self.cleaned_data.get('email') and \
+           not self.cleaned_data.get('phone'):
              raise ValidationError(_(u'Informe seu e-mail ou telefone.'))
 
         return self.cleaned_data
