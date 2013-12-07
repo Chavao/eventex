@@ -22,3 +22,15 @@ class SubscriptionFormTest(TestCase):
         form.is_valid()
 
         self.assertItemsEqual(['cpf'], form.errors)
+
+    def test_cpf_has_11_digits(self):
+        """
+        CPF must have 11 digits.
+        """
+        data = dict(name='Henrique Bastos', email='henrique@bastos.net',
+                    cpf='12345678901', phone='21-996186180')
+        data.update({'cpf': '1234'})
+        form = SubscriptionForm(data)
+        form.is_valid()
+
+        self.assertItemsEqual(['cpf'], form.errors)
