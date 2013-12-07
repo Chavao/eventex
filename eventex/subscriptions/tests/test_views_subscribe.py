@@ -26,8 +26,8 @@ class SubscribeTest(TestCase):
         Html must contain input controls.
         """
         self.assertContains(self.resp, '<form')
-        self.assertContains(self.resp, '<input', 6)
-        self.assertContains(self.resp, 'type="text"', 3)
+        self.assertContains(self.resp, '<input', 7)
+        self.assertContains(self.resp, 'type="text"', 4)
         self.assertContains(self.resp, 'type="email"')
         self.assertContains(self.resp, 'type="submit"')
 
