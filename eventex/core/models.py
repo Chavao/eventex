@@ -1,7 +1,9 @@
 # coding: utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from eventex.core.managers import EmailContactManager
+from eventex.core.managers import (EmailContactManager,
+                                   PhoneContactManager,
+                                   FaxContactManager)
 
 
 class Speaker(models.Model):
@@ -27,6 +29,8 @@ class Contact(models.Model):
 
     objects = models.Manager()
     emails = EmailContactManager()
+    phones = PhoneContactManager()
+    faxes = FaxContactManager()
 
     def __unicode__(self):
         return self.value
