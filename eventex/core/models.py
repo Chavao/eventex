@@ -11,3 +11,9 @@ class Speaker(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Contact(models.Model):
+    speaker = models.ForeignKey('Speaker', verbose_name=_('palestrante'))
+    kind = models.CharField(_('tipo'), max_length=1)
+    value = models.CharField(_('valor'), max_length=255)
