@@ -1,4 +1,5 @@
 # coding: utf-8
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from eventex.core.models import Speaker, Contact
 
@@ -46,3 +47,10 @@ class ContactModelTest(TestCase):
         contact = Contact.objects.create(speaker=self.speaker, kind='F',
                                          value='21-12345678')
         self.assertEqual(1, contact.pk)
+
+    def test_kind(self):
+        """
+        Contact kind should be limited to E, P or F.
+        """
+        contact = Contact(speaker=self.speaker, kind='A', value='B')
+        self.assertRaises(ValidationError, contact.full_clean)
