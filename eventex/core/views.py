@@ -1,6 +1,5 @@
 # coding: utf-8
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def home(request):
@@ -8,5 +7,5 @@ def home(request):
 
 
 def speaker_detail(request, slug):
-    return HttpResponse()
+    return render(request, 'core/speaker_detail.html')
 
