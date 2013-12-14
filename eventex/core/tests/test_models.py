@@ -16,3 +16,9 @@ class SpeakerModelTest(TestCase):
         Speaker instance should be saved.
         """
         self.assertEqual(1, self.speaker.pk)
+
+    def test_unicode(self):
+        """
+        Speaker string representation should be the name.
+        """
+        self.assertEqual(u'Henrique Bastos', unicode(self.speaker))
