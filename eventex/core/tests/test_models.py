@@ -54,3 +54,10 @@ class ContactModelTest(TestCase):
         """
         contact = Contact(speaker=self.speaker, kind='A', value='B')
         self.assertRaises(ValidationError, contact.full_clean)
+
+    def test_unicode(self):
+        """
+        Contact string representation should be value.
+        """
+        contact = Contact(speaker=self.speaker, kind='E', value='henrique@bastos.net')
+        self.assertEqual(u'henrique@bastos.net', unicode(contact))
