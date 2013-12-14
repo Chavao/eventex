@@ -18,3 +18,16 @@ class TalkListTest(TestCase):
         Template should be core/talk_list.html
         """
         self.assertTemplateUsed(self.resp, 'core/talk_list.html')
+
+    def test_html(self):
+        """
+        Html should list talks
+        """
+        self.assertContains(self.resp, u'10:00')
+        self.assertContains(self.resp, u'13:00')
+        self.assertContains(self.resp, u'Título da palestra', 2)
+        self.assertContains(self.resp, u'/palestras/1/')
+        self.assertContains(self.resp, u'/palestras/2/')
+        self.assertContains(self.resp, u'/palestrantes/henrique-bastos/', 2)
+        self.assertContains(self.resp, u'Passionate software developer!', 2)
+        self.assertContains(self.resp, u'Descrição da palestra', 2)
