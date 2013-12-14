@@ -12,3 +12,9 @@ class TalkListTest(TestCase):
         GET must result in 200.
         """
         self.assertEqual(200, self.resp.status_code)
+
+    def test_template(self):
+        """
+        Template should be core/talk_list.html
+        """
+        self.assertTemplateUsed(self.resp, 'core/talk_list.html')
