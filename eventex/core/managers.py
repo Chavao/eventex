@@ -11,3 +11,7 @@ class KindContactManager(models.Manager):
         qs = super(KindContactManager, self).get_queryset()
         qs = qs.filter(kind=self.kind)
         return qs
+
+
+class PeriodManager(models.Manager):
+    pass
