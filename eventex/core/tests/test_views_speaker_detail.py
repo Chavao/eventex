@@ -1,0 +1,15 @@
+# coding: utf-8
+from django.test import TestCase
+from django.core.urlresolvers import reverse as r
+
+
+class SpeakerDetailTest(TestCase):
+    def setUp(self):
+        url = r('core:speaker_detail', kwargs={'slug': 'henrique-bastos'})
+        self.resp = self.client.get(url)
+
+    def test_get(self):
+        """
+        GET should result in 200.
+        """
+        self.assertEqual(200, self.resp.status_code)
