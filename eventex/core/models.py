@@ -3,4 +3,6 @@ from django.db import models
 
 
 class Speaker(object):
-    pass
+    name = 'Henrique Bastos'
+    url = 'http://henriquebastos.net'
+    description = 'Passionate software developer!'
