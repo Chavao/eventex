@@ -38,7 +38,7 @@ class Contact(models.Model):
         return self.value
 
 
-class Talk(models.Model):
+class Activity(models.Model):
     title = models.CharField(_(u'Título'), max_length=200)
     description = models.TextField(_(u'Descrição'))
     start_time = models.TimeField(_(u'Horário'), blank=True)
@@ -47,6 +47,7 @@ class Talk(models.Model):
     objects = PeriodManager()
 
     class Meta:
+        abstract = True
         verbose_name = _('palestra')
         verbose_name_plural = _('palestras')
 
@@ -56,3 +57,12 @@ class Talk(models.Model):
     def get_absolute_url(self):
         # TODO: Use reverse.
         return '/palestras/%d/' % self.pk
+
+
+class Talk(Activity):
+    pass
+
+class Course(Activity):
+    slots = models.IntegerField(_('vagas'))
+    notes = models.TextField(_(u'observações'))
+
