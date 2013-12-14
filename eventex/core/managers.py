@@ -1,4 +1,5 @@
 # coding: utf-8
+from datetime import time
 from django.db import models
 
 
@@ -14,4 +15,14 @@ class KindContactManager(models.Manager):
 
 
 class PeriodManager(models.Manager):
-    pass
+    midday = time(12)
+
+    def at_morning(self):
+        qs = self.filter(start_time__lt=self.midday)
+        qs = qs.order_by('start_time')
+        return qs
+
+    def at_afternoon(self):
+        qs = self.filter(start_time__gte=self.midday)
+        qs = qs.order_by('start_time')
+        return qs
