@@ -8,5 +8,6 @@ def home(request):
 
 
 def speaker_detail(request, slug):
-    context = {'speaker': Speaker()}
+    speaker = Speaker.objects.get(slug=slug)
+    context = {'speaker': speaker}
     return render(request, 'core/speaker_detail.html', context)
