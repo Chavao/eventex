@@ -40,5 +40,9 @@ class Talk(models.Model):
     start_time = models.TimeField(_(u'Horário'), blank=True)
     speakers = models.ManyToManyField('Speaker', verbose_name=_('palestrantes'))
 
+    class Meta:
+        verbose_name = _('palestra')
+        verbose_name_plural = _('palestras')
+
     def __unicode__(self):
         return self.title
