@@ -13,6 +13,10 @@ class Speaker(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('core:speaker_detail', (), {'slug': self.slug})
+
 
 class Contact(models.Model):
     KINDS = (
@@ -46,3 +50,7 @@ class Talk(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        # TODO: Use reverse.
+        return '/palestras/%d/' % self.pk
