@@ -15,12 +15,16 @@ def speaker_detail(request, slug):
     return render(request, 'core/speaker_detail.html', context)
 
 
-def talk_list(request):
-    context = {
-        'morning_talks': Talk.objects.at_morning(),
-        'afternoon_talks': Talk.objects.at_afternoon(),
-    }
-    return render(request, 'core/talk_list.html', context)
+class TalkList(TemplateView):
+    template_name = 'core/talk_list.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(TalkList, self).get_context_data(**kwargs)
+        ctx.update({
+            'morning_talks': Talk.objects.at_morning(),
+            'afternoon_talks': Talk.objects.at_afternoon(),
+        })
+        return ctx
 
 
 def talk_detail(request, pk):
