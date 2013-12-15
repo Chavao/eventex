@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.test.utils import override_settings
 from eventex.myauth.backends import EmailBackend
 
 
@@ -41,3 +42,21 @@ class MultipleEmailsTest(TestCase):
         user = self.backend.authenticate(email='henrique@bastos.net',
                                          password='abracadabra')
         self.assertIsNone(user)
+
+
+@override_settings(AUTHENTICATION_BACKENDS=('eventex.myauth.backends.EmailBackend',))
+class FunctionalEmailBackendTest(TestCase):
+    def setUp(self):
+        UserModel = get_user_model()
+        UserModel.objects.create_user(username='henrique',
+            email='henrique@bastos.net', password='abracadabra')
+
+    def test_login_with_email(self):
+        result = self.client.login(email='henrique@bastos.net',
+                                   password='abracadabra')
+        self.assertTrue(result)
+
+    def test_loging_with_username(self):
+        result = self.client.login(username='henrique@bastos.net',
+                                   password='abracadabra')
+        self.assertTrue(result)
