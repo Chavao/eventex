@@ -1,6 +1,5 @@
 # coding: utf-8
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404
 from eventex.core.models import Speaker, Talk
 from django.views.generic import TemplateView, DetailView
 
@@ -21,9 +20,5 @@ def talk_list(request):
     return render(request, 'core/talk_list.html', context)
 
 
-def talk_detail(request, pk):
-    talk = get_object_or_404(Talk, pk=pk)
-    context = {
-        'talk': talk,
-    }
-    return render(request, 'core/talk_detail.html', context)
+class TalkDetail(DetailView):
+    model = Talk
