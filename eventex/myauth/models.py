@@ -1,3 +1,16 @@
+# coding: utf-8
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-# Create your models here.
+
+class UserManager(BaseUserManager):
+    pass
+
+
+class User(AbstractBaseUser):
+    cpf = models.CharField(max_length=11, unique=True, db_index=True)
+    name = models.CharField(max_length=100, null=True)
+
+    USERNAME_FIELD = 'cpf'
+
+    objects = UserManager()
