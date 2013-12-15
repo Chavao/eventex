@@ -2,17 +2,15 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from eventex.core.models import Speaker, Talk
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 
 
 class HomeView(TemplateView):
     template_name = 'index.html'
 
 
-def speaker_detail(request, slug):
-    speaker = get_object_or_404(Speaker, slug=slug)
-    context = {'speaker': speaker}
-    return render(request, 'core/speaker_detail.html', context)
+class SpeakerDetail(DetailView):
+    model = Speaker
 
 
 def talk_list(request):
