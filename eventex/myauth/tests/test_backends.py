@@ -1,10 +1,12 @@
 # coding: utf-8
+from unittest import skip
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.test.utils import override_settings
 from eventex.myauth.backends import EmailBackend
 
 
+@skip
 class EmailBackendTest(TestCase):
     def setUp(self):
         UserModel = get_user_model()
@@ -32,6 +34,7 @@ class EmailBackendTest(TestCase):
         self.assertIsNotNone(self.backend.get_user(1))
 
 
+@skip
 class MultipleEmailsTest(TestCase):
     def setUp(self):
         UserModel = get_user_model()
@@ -47,6 +50,7 @@ class MultipleEmailsTest(TestCase):
         self.assertIsNone(user)
 
 
+@skip
 @override_settings(AUTHENTICATION_BACKENDS=('eventex.myauth.backends.EmailBackend',))
 class FunctionalEmailBackendTest(TestCase):
     def setUp(self):
