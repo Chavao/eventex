@@ -92,3 +92,5 @@ STATIC_URL = '/static/'
 # True: Sim. (default)
 # False: Não! Use o Syncdb
 SOUTH_TESTS_MIGRATE = False
+
+AUTH_USER_MODEL = 'myauth.User'
