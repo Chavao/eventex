@@ -28,3 +28,9 @@ class TalkDetailTest(TestCase):
         self.assertContains(self.resp, 'Talk')
         self.assertContains(self.resp, '/palestrantes/henrique-bastos/')
         self.assertContains(self.resp, 'Henrique Bastos')
+
+    def test_videos_in_context(self):
+        self.assertIn('videos', self.resp.context)
+
+    def test_slides_in_context(self):
+        self.assertIn('slides', self.resp.context)
