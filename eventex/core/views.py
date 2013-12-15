@@ -2,10 +2,11 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from eventex.core.models import Speaker, Talk
+from django.views.generic import TemplateView
 
 
-def home(request):
-    return render(request, 'index.html')
+class HomeView(TemplateView):
+    template_name = 'index.html'
 
 
 def speaker_detail(request, slug):
