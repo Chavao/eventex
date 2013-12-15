@@ -8,7 +8,8 @@ class EmailBackend(object):
 
         try:
             user = UserModel.objects.get(email=email)
-        except UserModel.DoesNotExist:
+        except (UserModel.DoesNotExist,
+                UserModel.MultipleObjectsReturned):
             return None
 
         if not user.check_password(password):
