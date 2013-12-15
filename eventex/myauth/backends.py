@@ -18,3 +18,10 @@ class EmailBackend(object):
         if not user.check_password(password):
             return None
         return user
+
+    def get_user(self, user_id):
+        try:
+            UserModel = get_user_model()
+            return UserModel.objects.get(pk=user_id)
+        except UserModel.DoesNotExist:
+            return None

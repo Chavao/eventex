@@ -28,6 +28,9 @@ class EmailBackendTest(TestCase):
                                          password='abracadabra')
         self.assertIsNone(user)
 
+    def test_get_user(self):
+        self.assertIsNotNone(self.backend.get_user(1))
+
 
 class MultipleEmailsTest(TestCase):
     def setUp(self):
