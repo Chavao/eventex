@@ -21,3 +21,8 @@ class EmailBackendTest(TestCase):
         user = self.backend.authenticate(email='henrique@bastos.net',
                                          password='wrong')
         self.assertIsNone(user)
+
+    def test_unknown_user(self):
+        user = self.backend.authenticate(email='unknown@email.com',
+                                         password='abracadabra')
+        self.assertIsNone(user)
